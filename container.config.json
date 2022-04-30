@@ -1,0 +1,50 @@
+{
+	"containerPort": 80,                          
+	"minNum": 0,                                    
+	"maxNum": 50,                                
+	"cpu": 0.25,                               
+	"mem": 0.5,                           
+	"policyType": "cpu",                       
+	"policyThreshold": 60,                
+	"envParams": {},         
+	"customLogs": "stdout",              
+	"initialDelaySeconds": 2,                  
+	"dataBaseName":"action_analyze",
+	"executeSQLs":[
+		"CREATE DATABASE IF NOT EXISTS action_analyze;",
+		"USE action_analyze;",
+		"CREATE TABLE `tab` (
+  		`id` varchar(32) NOT NULL,
+  		`name` varchar(50) NOT NULL,
+  		`index` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  		`create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  		`update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  		`deleted` smallint(6) unsigned DEFAULT '0',
+  		PRIMARY KEY (`id`),
+  		UNIQUE KEY `index` (`index`)
+		) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;",
+		"CREATE TABLE `video` (
+		`id` varchar(32) NOT NULL,
+  		`tab_id` varchar(32) NOT NULL,
+  		`name` varchar(50) NOT NULL,
+  		`cover_src` varchar(250) NOT NULL,
+  		`src` varchar(250) NOT NULL,
+  		`index` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  		`create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  		`update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  		`deleted` smallint(6) DEFAULT '0',
+  		PRIMARY KEY (`id`),
+  		UNIQUE KEY `index` (`index`)
+		) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;",
+		"CREATE TABLE `user` (
+  		`id` varchar(50) NOT NULL,
+  		`user_id` varchar(50) NOT NULL,
+  		`name` varchar(50) NOT NULL,
+  		`is_vip` smallint(6) DEFAULT '0',
+  		`create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  		`update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  		`deleted` smallint(6) DEFAULT '0',
+  		PRIMARY KEY (`id`)
+		) ENGINE=InnoDB DEFAULT CHARSET=utf8;"
+	]    
+}
